@@ -15,11 +15,12 @@ To install:
 
 or, if using bundler, add this line to your application's Gemfile:
 
-    gem 'audio_waveform'
+    gem 'audio_waveform-ruby', :require => 'audio_waveform'
 
-or
+or, to use the latest code from the github repository:
 
-    gem 'audio_waveform-ruby', :require => 'audio_waveform', :git => 'https://github.com/bbcrd/audio_waveform-ruby.git'
+    gem 'audio_waveform-ruby', :require => 'audio_waveform',
+        :git => 'https://github.com/bbcrd/audio_waveform-ruby.git'
 
 and run
 
