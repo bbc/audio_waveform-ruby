@@ -17,7 +17,7 @@ or, if using bundler, add this line to your application's Gemfile:
 
     gem 'audio_waveform-ruby', :require => 'audio_waveform'
 
-or, to use the latest code from the github repository:
+or, to use the latest code from the GitHub repository:
 
     gem 'audio_waveform-ruby', :require => 'audio_waveform',
         :git => 'https://github.com/bbcrd/audio_waveform-ruby.git'
