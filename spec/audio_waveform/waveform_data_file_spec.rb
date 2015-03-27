@@ -12,19 +12,19 @@ describe AudioWaveform::WaveformDataFile do
       it "should return binary data" do
         output = file.to_binary
 
-        output.bytesize.should == 3620
+        expect(output.bytesize).to eq(3620)
 
         expected = Digest::MD5.hexdigest(File.read(filename))
         actual   = Digest::MD5.hexdigest(output)
 
-        actual.should == expected
+        expect(actual).to eq(expected)
 
         fields = output.unpack("lLllL")
-        fields[0].should == 1 # version
-        fields[1].should == 1 # flags (8-bit)
-        fields[2].should == 16000
-        fields[3].should == 64
-        fields[4].should == 1800
+        expect(fields[0]).to eq(1) # version
+        expect(fields[1]).to eq(1) # flags (8-bit)
+        expect(fields[2]).to eq(16000)
+        expect(fields[3]).to eq(64)
+        expect(fields[4]).to eq(1800)
       end
     end
 
@@ -39,11 +39,11 @@ describe AudioWaveform::WaveformDataFile do
 
       it "should write binary data to a file" do
         result = file.save_as_binary(temp_filename)
-        result.should == file
+        expect(result).to eq(file)
 
         data = File.open(temp_filename, "rb") { |f| f.read }
 
-        data.bytesize.should == 3620
+        expect(data.bytesize).to eq(3620)
       end
     end
 
@@ -53,21 +53,21 @@ describe AudioWaveform::WaveformDataFile do
 
         data = JSON.parse(output)
 
-        data.should have_key("sample_rate")
-        data["sample_rate"].should == 16000
+        expect(data).to have_key("sample_rate")
+        expect(data["sample_rate"]).to eq(16000)
 
-        data.should have_key("samples_per_pixel")
-        data["samples_per_pixel"].should == 64
+        expect(data).to have_key("samples_per_pixel")
+        expect(data["samples_per_pixel"]).to eq(64)
 
-        data.should have_key("bits")
-        data["bits"].should == 8
+        expect(data).to have_key("bits")
+        expect(data["bits"]).to eq(8)
 
-        data.should have_key("length")
-        data["length"].should == 1800
+        expect(data).to have_key("length")
+        expect(data["length"]).to eq(1800)
 
-        data.should have_key("data")
-        data["data"].should be_instance_of(Array)
-        data["data"].size.should == 3600
+        expect(data).to have_key("data")
+        expect(data["data"]).to be_instance_of(Array)
+        expect(data["data"].size).to eq(3600)
       end
     end
 
@@ -82,55 +82,55 @@ describe AudioWaveform::WaveformDataFile do
 
       it "should write JSON data to a file" do
         result = file.save_as_json(temp_filename)
-        result.should == file
+        expect(result).to eq(file)
 
         data = File.open(temp_filename, "rb") { |f| f.read }
 
         obj = JSON.parse(data)
-        obj.should have_key("sample_rate")
-        obj.should have_key("samples_per_pixel")
-        obj.should have_key("bits")
-        obj.should have_key("length")
-        obj.should have_key("data")
+        expect(obj).to have_key("sample_rate")
+        expect(obj).to have_key("samples_per_pixel")
+        expect(obj).to have_key("bits")
+        expect(obj).to have_key("length")
+        expect(obj).to have_key("data")
       end
     end
 
     describe "attributes" do
       it "should return sample rate in hertz" do
-        file.sample_rate.should == 16000
+        expect(file.sample_rate).to eq(16000)
       end
 
       it "should return samples per pixel" do
-        file.samples_per_pixel.should == 64
+        expect(file.samples_per_pixel).to eq(64)
       end
 
       it "should return waveform data resolution in bits" do
-        file.bits.should == 8
+        expect(file.bits).to eq(8)
       end
 
       it "should not have a start time" do
-        file.start_time.should be_nil
+        expect(file.start_time).to be_nil
       end
 
       it "should return number of min and max waveform data pairs" do
-        file.size.should == 1800
+        expect(file.size).to eq(1800)
       end
 
       it "should return waveform data" do
-        file.min_sample(0).should == 0
-        file.max_sample(0).should == 0
+        expect(file.min_sample(0)).to eq(0)
+        expect(file.max_sample(0)).to eq(0)
 
-        file.min_sample(26).should == -53
-        file.max_sample(26).should == 64
+        expect(file.min_sample(26)).to eq(-53)
+        expect(file.max_sample(26)).to eq(64)
 
-        file.min_sample(206).should == 8
-        file.max_sample(206).should == 17
+        expect(file.min_sample(206)).to eq(8)
+        expect(file.max_sample(206)).to eq(17)
 
-        file.min_sample(217).should == -15
-        file.max_sample(217).should == -1
+        expect(file.min_sample(217)).to eq(-15)
+        expect(file.max_sample(217)).to eq(-1)
 
-        file.min_sample(1799).should == 0
-        file.max_sample(1799).should == 0
+        expect(file.min_sample(1799)).to eq(0)
+        expect(file.max_sample(1799)).to eq(0)
       end
     end
   end
@@ -141,40 +141,40 @@ describe AudioWaveform::WaveformDataFile do
 
     describe "attributes" do
       it "should return sample rate in hertz" do
-        file.sample_rate.should == 16000
+        expect(file.sample_rate).to eq(16000)
       end
 
       it "should return samples per pixel" do
-        file.samples_per_pixel.should == 64
+        expect(file.samples_per_pixel).to eq(64)
       end
 
       it "should return waveform data resolution in bits" do
-        file.bits.should == 16
+        expect(file.bits).to eq(16)
       end
 
       it "should not have a start time" do
-        file.start_time.should be_nil
+        expect(file.start_time).to be_nil
       end
 
       it "should return number of min and max waveform data pairs" do
-        file.size.should == 1800
+        expect(file.size).to eq(1800)
       end
 
       it "should return waveform data" do
-        file.min_sample(0).should == 0
-        file.max_sample(0).should == 0
+        expect(file.min_sample(0)).to eq(0)
+        expect(file.max_sample(0)).to eq(0)
 
-        file.min_sample(26).should == -13606
-        file.max_sample(26).should == 16602
+        expect(file.min_sample(26)).to eq(-13606)
+        expect(file.max_sample(26)).to eq(16602)
 
-        file.min_sample(206).should == 2166
-        file.max_sample(206).should == 4512
+        expect(file.min_sample(206)).to eq(2166)
+        expect(file.max_sample(206)).to eq(4512)
 
-        file.min_sample(217).should == -4052
-        file.max_sample(217).should == -430
+        expect(file.min_sample(217)).to eq(-4052)
+        expect(file.max_sample(217)).to eq(-430)
 
-        file.min_sample(1799).should == -8
-        file.max_sample(1799).should == 7
+        expect(file.min_sample(1799)).to eq(-8)
+        expect(file.max_sample(1799)).to eq(7)
       end
     end
   end
@@ -185,23 +185,23 @@ describe AudioWaveform::WaveformDataFile do
 
     describe "attributes" do
       it "should return sample rate in hertz" do
-        file.sample_rate.should == 16000
+        expect(file.sample_rate).to eq(16000)
       end
 
       it "should return samples per pixel" do
-        file.samples_per_pixel.should == 64
+        expect(file.samples_per_pixel).to eq(64)
       end
 
       it "should return waveform data resolution in bits" do
-        file.bits.should == 8
+        expect(file.bits).to eq(8)
       end
 
       it "should not have a start time" do
-        file.start_time.should be_nil
+        expect(file.start_time).to be_nil
       end
 
       it "should return number of min and max waveform data pairs" do
-        file.size.should == 0
+        expect(file.size).to eq(0)
       end
     end
   end
@@ -257,15 +257,15 @@ describe AudioWaveform::WaveformDataFile do
 
     describe "append" do
       it "should append waveform data points" do
-        file.size.should == 0
+        expect(file.size).to eq(0)
 
         file.append(-99, 101).append(-49, 51)
 
-        file.size.should == 2
-        file.min_sample(0).should == -99
-        file.max_sample(0).should == 101
-        file.min_sample(1).should == -49
-        file.max_sample(1).should == 51
+        expect(file.size).to eq(2)
+        expect(file.min_sample(0)).to eq(-99)
+        expect(file.max_sample(0)).to eq(101)
+        expect(file.min_sample(1)).to eq(-49)
+        expect(file.max_sample(1)).to eq(51)
       end
     end
 
@@ -273,14 +273,14 @@ describe AudioWaveform::WaveformDataFile do
       it "should return binary data" do
         output = file.to_binary
 
-        output.bytesize.should == 20
+        expect(output.bytesize).to eq(20)
 
         fields = output.unpack("lLllL")
-        fields[0].should == 1 # version
-        fields[1].should == 0 # flags (16-bit)
-        fields[2].should == 44100
-        fields[3].should == 512
-        fields[4].should == 0
+        expect(fields[0]).to eq(1) # version
+        expect(fields[1]).to eq(0) # flags (16-bit)
+        expect(fields[2]).to eq(44100)
+        expect(fields[3]).to eq(512)
+        expect(fields[4]).to eq(0)
       end
     end
 
@@ -290,23 +290,23 @@ describe AudioWaveform::WaveformDataFile do
 
         data = JSON.parse(output)
 
-        data.should have_key("sample_rate")
-        data["sample_rate"].should == 44100
+        expect(data).to have_key("sample_rate")
+        expect(data["sample_rate"]).to eq(44100)
 
-        data.should have_key("samples_per_pixel")
-        data["samples_per_pixel"].should == 512
+        expect(data).to have_key("samples_per_pixel")
+        expect(data["samples_per_pixel"]).to eq(512)
 
-        data.should have_key("bits")
-        data["bits"].should == 16
+        expect(data).to have_key("bits")
+        expect(data["bits"]).to eq(16)
 
-        data.should have_key("length")
-        data["length"].should == 0
+        expect(data).to have_key("length")
+        expect(data["length"]).to eq(0)
 
-        data.should have_key("data")
-        data["data"].should be_instance_of(Array)
-        data["data"].size.should == 0
+        expect(data).to have_key("data")
+        expect(data["data"]).to be_instance_of(Array)
+        expect(data["data"].size).to eq(0)
 
-        data.should_not have_key("start_time")
+        expect(data).not_to have_key("start_time")
       end
     end
   end
@@ -323,7 +323,7 @@ describe AudioWaveform::WaveformDataFile do
 
     describe "attributes" do
       it "should return start time" do
-        file.start_time.should == 8.5
+        expect(file.start_time).to eq(8.5)
       end
     end
 
@@ -333,8 +333,8 @@ describe AudioWaveform::WaveformDataFile do
 
         data = JSON.parse(output)
 
-        data.should have_key("start_time")
-        data["start_time"].should == 8.5
+        expect(data).to have_key("start_time")
+        expect(data["start_time"]).to eq(8.5)
       end
     end
 
