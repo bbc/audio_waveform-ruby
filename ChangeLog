@@ -1,7 +1,14 @@
-2015-03-27 Chris Needham <chris.needham@bbc.co.uk>
+v1.0.3, 2017-03-23, Chris Needham <chris.needham@bbc.co.uk>
 
- * v1.0.2, Updated gem dependencies
+ * Updated json gem to 1.8.5 for Ruby 2.4.0 compatibility
+ * Corrected example code in README.md
+ * Moved repository from https://github.com/bbcrd/audio_waveform-ruby to
+   https://github.com/bbc/audio_waveform-ruby
 
-2013-10-14 Chris Needham <chris.needham@bbc.co.uk>
+v1.0.2, 2015-03-27, Chris Needham <chris.needham@bbc.co.uk>
 
- * v1.0.1, initial public release
+ * Updated gem dependencies
+
+v1.0.1, 2013-10-14, Chris Needham <chris.needham@bbc.co.uk>
+
+ * Initial public release
