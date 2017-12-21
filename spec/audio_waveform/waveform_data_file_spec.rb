@@ -1,5 +1,6 @@
 require 'spec_helper'
 
+require 'digest'
 require 'tempfile'
 require 'tmpdir'
 
