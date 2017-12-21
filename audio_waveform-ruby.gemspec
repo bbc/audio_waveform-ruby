@@ -16,11 +16,11 @@ Gem::Specification.new do |s|
 
   s.require_paths = ["lib"]
 
-  s.add_dependency 'json', '~> 1.8.5'
+  s.add_dependency 'json', '~> 2.1.0'
 
-  s.add_development_dependency 'rake'
-  s.add_development_dependency 'rspec'
-  s.add_development_dependency 'simplecov'
-  s.add_development_dependency 'redcarpet'
-  s.add_development_dependency 'yard'
+  s.add_development_dependency 'rake', '~> 12.3.0'
+  s.add_development_dependency 'rspec', '~> 3.7.0'
+  s.add_development_dependency 'simplecov', '~> 0.15.1'
+  s.add_development_dependency 'redcarpet', '~> 3.4.0'
+  s.add_development_dependency 'yard', '~> 0.9.11'
 end
