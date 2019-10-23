@@ -111,4 +111,4 @@ This software was written by [Chris Needham](https://github.com/chrisn), chris.n
 
 ## Copyright
 
-Copyright 2017 British Broadcasting Corporation
+Copyright 2019 British Broadcasting Corporation
