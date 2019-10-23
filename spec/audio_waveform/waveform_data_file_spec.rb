@@ -2,7 +2,13 @@ require 'spec_helper'
 
 require 'digest'
 require 'tempfile'
-require 'tmpdir'
+
+def get_temp_filename(prefix)
+  temp_file = Tempfile.new(prefix)
+  path = temp_file.path
+  temp_file.unlink
+  path
+end
 
 describe AudioWaveform::WaveformDataFile do
   context "with valid 8-bit data file" do
@@ -31,7 +37,7 @@ describe AudioWaveform::WaveformDataFile do
 
     describe "save_as_binary" do
       let(:temp_filename) {
-        File.join(Dir.tmpdir, Dir::Tmpname.make_tmpname("waveform", 1))
+        get_temp_filename('waveform')
       }
 
       after do
@@ -74,7 +80,7 @@ describe AudioWaveform::WaveformDataFile do
 
     describe "save_as_json" do
       let(:temp_filename) {
-        File.join(Dir.tmpdir, Dir::Tmpname.make_tmpname("waveform", 1))
+        get_temp_filename('waveform')
       }
 
       after do
