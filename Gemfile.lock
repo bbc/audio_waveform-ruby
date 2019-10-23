@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    audio_waveform-ruby (1.0.5)
+    audio_waveform-ruby (1.0.6)
       json (~> 2.1.0)
 
 GEM
