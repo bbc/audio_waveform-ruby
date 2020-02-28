@@ -19,7 +19,7 @@ Gem::Specification.new do |s|
 
   s.add_dependency 'json', '~> 2.1.0'
 
-  s.add_development_dependency 'rake', '~> 12.3.0'
+  s.add_development_dependency 'rake', '~> 13.0.1'
   s.add_development_dependency 'rspec', '~> 3.7.0'
   s.add_development_dependency 'simplecov', '~> 0.15.1'
   s.add_development_dependency 'redcarpet', '~> 3.4.0'
