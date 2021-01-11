@@ -11,7 +11,7 @@ GEM
     docile (1.1.5)
     json (2.3.0)
     rake (13.0.1)
-    redcarpet (3.4.0)
+    redcarpet (3.5.1)
     rspec (3.7.0)
       rspec-core (~> 3.7.0)
       rspec-expectations (~> 3.7.0)
@@ -38,7 +38,7 @@ PLATFORMS
 DEPENDENCIES
   audio_waveform-ruby!
   rake (~> 13.0.1)
-  redcarpet (~> 3.4.0)
+  redcarpet (~> 3.5.1)
   rspec (~> 3.7.0)
   simplecov (~> 0.15.1)
   yard (~> 0.9.11)
